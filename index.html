@@ -1,0 +1,2508 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Apartment · Find Your Perfect Home</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+
+    <style>
+        /* ===== RESET & BASE ===== */
+        *,
+        *::before,
+        *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --white: #ffffff;
+            --light-gray: #f8f8f8;
+            --gray: #e9e9e9;
+            --dark-gray: #8a8a8a;
+            --charcoal: #2c2c2c;
+            --navy: #1a2a3a;
+            --navy-light: #2a3f54;
+            --sage: #7a8f7a;
+            --sage-light: #a8bba8;
+            --warm-wood: #c4a882;
+            --shadow: 0 20px 60px rgba(0, 0, 0, 0.08);
+            --shadow-hover: 0 30px 80px rgba(0, 0, 0, 0.15);
+            --radius: 16px;
+            --transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            --font-heading: 'Montserrat', sans-serif;
+            --font-body: 'Inter', sans-serif;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: var(--font-body);
+            background: var(--white);
+            color: var(--charcoal);
+            line-height: 1.7;
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+        ul {
+            list-style: none;
+        }
+        img {
+            max-width: 100%;
+            display: block;
+        }
+
+        .container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 40px;
+        }
+
+        /* ===== SCROLLBAR ===== */
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: var(--light-gray);
+        }
+        ::-webkit-scrollbar-thumb {
+            background: var(--navy);
+            border-radius: 10px;
+        }
+
+        /* ===== BUTTONS ===== */
+        .btn-primary {
+            display: inline-block;
+            background: var(--navy);
+            color: var(--white);
+            padding: 14px 40px;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 0.95rem;
+            letter-spacing: 0.5px;
+            border: none;
+            cursor: pointer;
+            transition: var(--transition);
+            font-family: var(--font-body);
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 8px 30px rgba(26, 42, 58, 0.25);
+        }
+
+        .btn-primary:hover {
+            background: var(--navy-light);
+            transform: translateY(-3px);
+            box-shadow: 0 14px 40px rgba(26, 42, 58, 0.35);
+        }
+
+        .btn-secondary {
+            display: inline-block;
+            background: transparent;
+            color: var(--navy);
+            padding: 13px 38px;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 0.95rem;
+            letter-spacing: 0.5px;
+            border: 2px solid var(--navy);
+            cursor: pointer;
+            transition: var(--transition);
+            font-family: var(--font-body);
+        }
+
+        .btn-secondary:hover {
+            background: var(--navy);
+            color: var(--white);
+            transform: translateY(-3px);
+            box-shadow: 0 14px 40px rgba(26, 42, 58, 0.2);
+        }
+
+        .btn-sage {
+            display: inline-block;
+            background: var(--sage);
+            color: var(--white);
+            padding: 14px 40px;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 0.95rem;
+            letter-spacing: 0.5px;
+            border: none;
+            cursor: pointer;
+            transition: var(--transition);
+            font-family: var(--font-body);
+            box-shadow: 0 8px 30px rgba(122, 143, 122, 0.3);
+        }
+
+        .btn-sage:hover {
+            background: #6a7f6a;
+            transform: translateY(-3px);
+            box-shadow: 0 14px 40px rgba(122, 143, 122, 0.4);
+        }
+
+        .btn-call {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: #25D366;
+            color: var(--white);
+            padding: 14px 32px;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 0.95rem;
+            letter-spacing: 0.5px;
+            border: none;
+            cursor: pointer;
+            transition: var(--transition);
+            font-family: var(--font-body);
+            box-shadow: 0 8px 30px rgba(37, 211, 102, 0.35);
+        }
+
+        .btn-call:hover {
+            background: #1ebe5c;
+            transform: translateY(-3px) scale(1.02);
+            box-shadow: 0 14px 40px rgba(37, 211, 102, 0.45);
+        }
+
+        .btn-call i {
+            font-size: 1.1rem;
+        }
+
+        /* ===== HEADER / NAV ===== */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            padding: 18px 0;
+            transition: var(--transition);
+            background: rgba(255, 255, 255, 0.92);
+            backdrop-filter: blur(18px);
+            -webkit-backdrop-filter: blur(18px);
+            border-bottom: 1px solid rgba(0, 0, 0, 0.04);
+        }
+
+        header.scrolled {
+            padding: 12px 0;
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.06);
+        }
+
+        .header-inner {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .logo {
+            font-family: var(--font-heading);
+            font-weight: 800;
+            font-size: 1.6rem;
+            letter-spacing: -0.5px;
+            color: var(--navy);
+        }
+        .logo span {
+            color: var(--sage);
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .nav-links a {
+            font-size: 0.9rem;
+            font-weight: 500;
+            color: var(--charcoal);
+            transition: var(--transition);
+            position: relative;
+            letter-spacing: 0.3px;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--sage);
+            transition: var(--transition);
+        }
+
+        .nav-links a:hover::after,
+        .nav-links a.active::after {
+            width: 100%;
+        }
+        .nav-links a:hover {
+            color: var(--navy);
+        }
+
+        .nav-links .btn-book {
+            background: var(--navy);
+            color: var(--white);
+            padding: 10px 28px;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 0.85rem;
+            transition: var(--transition);
+            border: none;
+            cursor: pointer;
+            font-family: var(--font-body);
+        }
+
+        .nav-links .btn-book:hover {
+            background: var(--navy-light);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(26, 42, 58, 0.3);
+        }
+
+        .nav-links .btn-book::after {
+            display: none;
+        }
+
+        .nav-links .btn-call-nav {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: #25D366;
+            color: var(--white);
+            padding: 10px 22px;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 0.85rem;
+            transition: var(--transition);
+            border: none;
+            cursor: pointer;
+            font-family: var(--font-body);
+        }
+
+        .nav-links .btn-call-nav:hover {
+            background: #1ebe5c;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(37, 211, 102, 0.35);
+        }
+
+        .nav-links .btn-call-nav i {
+            font-size: 0.9rem;
+        }
+
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            cursor: pointer;
+            padding: 4px;
+        }
+        .hamburger span {
+            width: 28px;
+            height: 2.5px;
+            background: var(--charcoal);
+            border-radius: 4px;
+            transition: var(--transition);
+        }
+
+        /* ===== PAGE SYSTEM ===== */
+        .page {
+            display: none;
+            padding-top: 88px;
+            animation: fadeUp 0.7s ease forwards;
+            position: relative;
+            z-index: 2;
+        }
+
+        .page.active {
+            display: block;
+        }
+
+        @keyframes fadeUp {
+            0% {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* ===== HERO ===== */
+        .hero {
+            position: relative;
+            min-height: 90vh;
+            display: flex;
+            align-items: center;
+            overflow: hidden;
+            background: var(--light-gray);
+        }
+
+        /* Hero background image with overlay - this completely covers the 3D wave behind it */
+        .hero-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            z-index: 0;
+        }
+
+        .hero-bg::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(26, 42, 58, 0.65);
+            z-index: 1;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            flex: 1;
+            padding: 80px 0;
+            color: var(--white);
+        }
+
+        .hero-content .tag {
+            display: inline-block;
+            background: rgba(255, 255, 255, 0.15);
+            color: var(--white);
+            padding: 6px 20px;
+            border-radius: 50px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            margin-bottom: 24px;
+            backdrop-filter: blur(4px);
+        }
+
+        .hero-content h1 {
+            font-family: var(--font-heading);
+            font-weight: 800;
+            font-size: clamp(2.8rem, 6vw, 5.2rem);
+            line-height: 1.1;
+            color: var(--white);
+            max-width: 700px;
+            margin-bottom: 16px;
+            text-shadow: 0 2px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .hero-content h1 span {
+            color: var(--sage-light);
+        }
+
+        .hero-content .subheadline {
+            font-size: 1.2rem;
+            color: rgba(255, 255, 255, 0.9);
+            max-width: 560px;
+            margin-bottom: 36px;
+            font-weight: 400;
+            line-height: 1.8;
+            text-shadow: 0 1px 12px rgba(0, 0, 0, 0.15);
+        }
+
+        .hero-cta {
+            display: flex;
+            gap: 16px;
+            flex-wrap: wrap;
+        }
+
+        .hero-cta .btn-primary {
+            background: var(--white);
+            color: var(--navy);
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .hero-cta .btn-primary:hover {
+            background: var(--light-gray);
+            transform: translateY(-3px);
+            box-shadow: 0 14px 40px rgba(0, 0, 0, 0.25);
+        }
+
+        .hero-cta .btn-secondary {
+            border-color: var(--white);
+            color: var(--white);
+        }
+
+        .hero-cta .btn-secondary:hover {
+            background: var(--white);
+            color: var(--navy);
+            border-color: var(--white);
+        }
+
+        .hero-cta .btn-call {
+            box-shadow: 0 8px 30px rgba(37, 211, 102, 0.35);
+        }
+
+        .hero-cta .btn-call:hover {
+            box-shadow: 0 14px 40px rgba(37, 211, 102, 0.5);
+        }
+
+        /* ===== SECTION TITLES ===== */
+        .section-title {
+            font-family: var(--font-heading);
+            font-weight: 700;
+            font-size: clamp(2rem, 3.5vw, 3rem);
+            color: var(--navy);
+            margin-bottom: 12px;
+            letter-spacing: -0.5px;
+        }
+
+        .section-subtitle {
+            font-size: 1.1rem;
+            color: var(--dark-gray);
+            max-width: 560px;
+            margin-bottom: 40px;
+            font-weight: 400;
+        }
+
+        .section-title .highlight {
+            color: var(--sage);
+        }
+
+        .text-center {
+            text-align: center;
+        }
+        .mx-auto {
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* ===== HOME PAGE ===== */
+
+        /* Brief Intro */
+        .intro-section {
+            padding: 100px 0 80px;
+            background: var(--white);
+        }
+
+        .intro-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+
+        .intro-text h2 {
+            font-family: var(--font-heading);
+            font-weight: 700;
+            font-size: 2.4rem;
+            color: var(--navy);
+            margin-bottom: 20px;
+        }
+
+        .intro-text p {
+            color: var(--dark-gray);
+            font-size: 1.05rem;
+            line-height: 1.9;
+            margin-bottom: 16px;
+        }
+
+        .intro-image {
+            border-radius: var(--radius);
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            background: var(--gray);
+            min-height: 320px;
+            position: relative;
+        }
+
+        .intro-image img {
+            width: 100%;
+            height: 100%;
+            min-height: 320px;
+            object-fit: cover;
+            display: block;
+            border-radius: var(--radius);
+            transition: var(--transition);
+        }
+
+        .intro-image img:hover {
+            transform: scale(1.02);
+        }
+
+        /* Quick Amenities Banner */
+        .amenities-banner {
+            padding: 70px 0;
+            background: var(--light-gray);
+        }
+
+        .amenities-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+            gap: 30px;
+        }
+
+        .amenity-item {
+            text-align: center;
+            padding: 24px 16px;
+            background: var(--white);
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            border: 1px solid rgba(0, 0, 0, 0.02);
+        }
+
+        .amenity-item:hover {
+            transform: translateY(-8px);
+            box-shadow: var(--shadow-hover);
+        }
+
+        .amenity-item .icon {
+            font-size: 2.4rem;
+            color: var(--sage);
+            margin-bottom: 12px;
+            display: block;
+        }
+
+        .amenity-item h4 {
+            font-family: var(--font-heading);
+            font-weight: 600;
+            font-size: 0.95rem;
+            color: var(--navy);
+        }
+
+        .amenity-item p {
+            font-size: 0.8rem;
+            color: var(--dark-gray);
+            margin-top: 4px;
+        }
+
+        /* Featured Spaces */
+        .featured-section {
+            padding: 100px 0;
+            background: var(--white);
+        }
+
+        .featured-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 40px;
+            margin-top: 20px;
+        }
+
+        .featured-card {
+            border-radius: var(--radius);
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            background: var(--white);
+            border: 1px solid rgba(0, 0, 0, 0.03);
+        }
+
+        .featured-card:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--shadow-hover);
+        }
+
+        .featured-card .card-img {
+            height: 240px;
+            overflow: hidden;
+            background: var(--gray);
+            position: relative;
+        }
+
+        .featured-card .card-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            transition: var(--transition);
+        }
+
+        .featured-card:hover .card-img img {
+            transform: scale(1.05);
+        }
+
+        .featured-card .card-body {
+            padding: 28px 30px 32px;
+        }
+
+        .featured-card .card-body h3 {
+            font-family: var(--font-heading);
+            font-weight: 700;
+            font-size: 1.3rem;
+            color: var(--navy);
+            margin-bottom: 8px;
+        }
+
+        .featured-card .card-body p {
+            color: var(--dark-gray);
+            font-size: 0.95rem;
+            margin-bottom: 16px;
+        }
+
+        .featured-card .card-body .link-arrow {
+            color: var(--sage);
+            font-weight: 600;
+            font-size: 0.9rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            transition: var(--transition);
+        }
+
+        .featured-card .card-body .link-arrow:hover {
+            gap: 14px;
+            color: var(--navy);
+        }
+
+        /* ===== APARTMENTS PAGE ===== */
+        .apartments-hero {
+            padding: 120px 0 80px;
+            position: relative;
+            background: var(--light-gray);
+            overflow: hidden;
+        }
+
+        .apartments-hero .hero-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            z-index: 0;
+        }
+
+        .apartments-hero .hero-bg::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(26, 42, 58, 0.6);
+            z-index: 1;
+        }
+
+        .apartments-hero .container {
+            position: relative;
+            z-index: 2;
+            color: var(--white);
+        }
+
+        .apartments-hero .section-title {
+            color: var(--white);
+        }
+
+        .apartments-hero .section-subtitle {
+            color: rgba(255, 255, 255, 0.85);
+        }
+
+        .apartments-hero .tag {
+            display: inline-block;
+            background: rgba(255, 255, 255, 0.15);
+            color: var(--white);
+            padding: 4px 16px;
+            border-radius: 50px;
+            font-size: 0.7rem;
+            font-weight: 600;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            margin-bottom: 12px;
+            backdrop-filter: blur(4px);
+        }
+
+        .unit-overview {
+            padding: 80px 0;
+        }
+
+        .unit-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            margin-top: 30px;
+        }
+
+        .unit-detail {
+            background: var(--white);
+            border-radius: var(--radius);
+            padding: 32px 36px;
+            box-shadow: var(--shadow);
+            border-left: 4px solid var(--sage);
+            transition: var(--transition);
+        }
+
+        .unit-detail:hover {
+            box-shadow: var(--shadow-hover);
+            transform: translateY(-4px);
+        }
+
+        .unit-detail h4 {
+            font-family: var(--font-heading);
+            font-weight: 700;
+            font-size: 1.2rem;
+            color: var(--navy);
+            margin-bottom: 6px;
+        }
+
+        .unit-detail p {
+            color: var(--dark-gray);
+            font-size: 0.95rem;
+        }
+
+        .floor-plan {
+            padding: 80px 0;
+            background: var(--light-gray);
+        }
+
+        .floor-plan-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 30px;
+            margin-top: 30px;
+        }
+
+        .floor-card {
+            background: var(--white);
+            border-radius: var(--radius);
+            padding: 30px;
+            text-align: center;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+        }
+
+        .floor-card:hover {
+            transform: translateY(-6px);
+            box-shadow: var(--shadow-hover);
+        }
+
+        .floor-card .floor-icon {
+            font-size: 3rem;
+            color: var(--sage);
+            margin-bottom: 12px;
+        }
+
+        .floor-card h4 {
+            font-family: var(--font-heading);
+            font-weight: 600;
+            color: var(--navy);
+        }
+
+        .floor-card p {
+            font-size: 0.85rem;
+            color: var(--dark-gray);
+        }
+
+        .features-list {
+            padding: 80px 0;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 24px;
+            margin-top: 20px;
+        }
+
+        .feature-badge {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            padding: 18px 24px;
+            background: var(--light-gray);
+            border-radius: 12px;
+            transition: var(--transition);
+        }
+
+        .feature-badge:hover {
+            background: var(--white);
+            box-shadow: var(--shadow);
+            transform: translateX(4px);
+        }
+
+        .feature-badge .fi {
+            font-size: 1.4rem;
+            color: var(--sage);
+            width: 32px;
+            text-align: center;
+        }
+
+        .feature-badge span {
+            font-weight: 500;
+            font-size: 0.95rem;
+        }
+
+        .cta-section {
+            padding: 80px 0;
+            background: var(--navy);
+            color: var(--white);
+            text-align: center;
+        }
+
+        .cta-section h2 {
+            font-family: var(--font-heading);
+            font-weight: 700;
+            font-size: 2.4rem;
+            margin-bottom: 12px;
+        }
+
+        .cta-section p {
+            opacity: 0.8;
+            font-size: 1.1rem;
+            max-width: 500px;
+            margin: 0 auto 30px;
+        }
+
+        .cta-section .btn-primary {
+            background: var(--white);
+            color: var(--navy);
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .cta-section .btn-primary:hover {
+            background: var(--light-gray);
+            transform: translateY(-3px);
+        }
+
+        .cta-section .btn-call {
+            box-shadow: 0 8px 30px rgba(37, 211, 102, 0.35);
+        }
+
+        .cta-section .btn-call:hover {
+            box-shadow: 0 14px 40px rgba(37, 211, 102, 0.5);
+        }
+
+        /* ===== GALLERY PAGE ===== */
+        .gallery-hero {
+            padding: 120px 0 60px;
+            position: relative;
+            background: var(--light-gray);
+            overflow: hidden;
+        }
+
+        .gallery-hero .hero-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            z-index: 0;
+        }
+
+        .gallery-hero .hero-bg::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(26, 42, 58, 0.6);
+            z-index: 1;
+        }
+
+        .gallery-hero .container {
+            position: relative;
+            z-index: 2;
+            color: var(--white);
+        }
+
+        .gallery-hero .section-title {
+            color: var(--white);
+        }
+
+        .gallery-hero .section-subtitle {
+            color: rgba(255, 255, 255, 0.85);
+        }
+
+        .gallery-hero .tag {
+            display: inline-block;
+            background: rgba(255, 255, 255, 0.15);
+            color: var(--white);
+            padding: 4px 16px;
+            border-radius: 50px;
+            font-size: 0.7rem;
+            font-weight: 600;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            margin-bottom: 12px;
+            backdrop-filter: blur(4px);
+        }
+
+        .gallery-filters {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-bottom: 40px;
+            justify-content: center;
+        }
+
+        .gallery-filters button {
+            padding: 10px 28px;
+            border: none;
+            background: var(--white);
+            border-radius: 50px;
+            font-family: var(--font-body);
+            font-weight: 500;
+            font-size: 0.85rem;
+            cursor: pointer;
+            transition: var(--transition);
+            box-shadow: 0 2px 12px rgba(0, 0, 0, 0.04);
+            color: var(--charcoal);
+        }
+
+        .gallery-filters button:hover,
+        .gallery-filters button.active {
+            background: var(--navy);
+            color: var(--white);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(26, 42, 58, 0.2);
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 24px;
+            padding-bottom: 80px;
+        }
+
+        .gallery-item {
+            border-radius: var(--radius);
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            aspect-ratio: 4/3;
+            background: var(--gray);
+            position: relative;
+            cursor: pointer;
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            transition: var(--transition);
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.05);
+        }
+
+        .gallery-item:hover {
+            box-shadow: var(--shadow-hover);
+        }
+
+        .gallery-item .gi-label {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 20px 24px;
+            background: linear-gradient(transparent, rgba(0, 0, 0, 0.6));
+            color: var(--white);
+            font-weight: 500;
+            font-size: 0.95rem;
+            opacity: 0;
+            transition: var(--transition);
+        }
+
+        .gallery-item:hover .gi-label {
+            opacity: 1;
+        }
+
+        /* ===== ABOUT PAGE ===== */
+        .about-hero {
+            padding: 120px 0 80px;
+            position: relative;
+            background: var(--light-gray);
+            overflow: hidden;
+        }
+
+        .about-hero .hero-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            z-index: 0;
+        }
+
+        .about-hero .hero-bg::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(26, 42, 58, 0.6);
+            z-index: 1;
+        }
+
+        .about-hero .container {
+            position: relative;
+            z-index: 2;
+            color: var(--white);
+        }
+
+        .about-hero .section-title {
+            color: var(--white);
+        }
+
+        .about-hero .section-subtitle {
+            color: rgba(255, 255, 255, 0.85);
+        }
+
+        .about-hero .tag {
+            display: inline-block;
+            background: rgba(255, 255, 255, 0.15);
+            color: var(--white);
+            padding: 4px 16px;
+            border-radius: 50px;
+            font-size: 0.7rem;
+            font-weight: 600;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            margin-bottom: 12px;
+            backdrop-filter: blur(4px);
+        }
+
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            padding: 80px 0;
+            align-items: center;
+        }
+
+        .about-image {
+            border-radius: var(--radius);
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            background: var(--gray);
+            min-height: 340px;
+            position: relative;
+        }
+
+        .about-image img {
+            width: 100%;
+            height: 100%;
+            min-height: 340px;
+            object-fit: cover;
+            display: block;
+            border-radius: var(--radius);
+            transition: var(--transition);
+        }
+
+        .about-image img:hover {
+            transform: scale(1.02);
+        }
+
+        .about-text h2 {
+            font-family: var(--font-heading);
+            font-weight: 700;
+            font-size: 2.4rem;
+            color: var(--navy);
+            margin-bottom: 16px;
+        }
+
+        .about-text p {
+            color: var(--dark-gray);
+            font-size: 1.05rem;
+            line-height: 1.9;
+            margin-bottom: 16px;
+        }
+
+        .about-text .values {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+            margin-top: 24px;
+        }
+
+        .about-text .values .val {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-weight: 500;
+            font-size: 0.95rem;
+        }
+
+        .about-text .values .val i {
+            color: var(--sage);
+            font-size: 1.2rem;
+        }
+
+        .neighborhood {
+            padding: 80px 0;
+            background: var(--light-gray);
+        }
+
+        .neighborhood-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 30px;
+            margin-top: 30px;
+        }
+
+        .neighborhood-item {
+            background: var(--white);
+            padding: 28px 24px;
+            border-radius: var(--radius);
+            text-align: center;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+        }
+
+        .neighborhood-item:hover {
+            transform: translateY(-6px);
+            box-shadow: var(--shadow-hover);
+        }
+
+        .neighborhood-item .ni-icon {
+            font-size: 2.2rem;
+            color: var(--sage);
+            margin-bottom: 10px;
+        }
+
+        .neighborhood-item h4 {
+            font-family: var(--font-heading);
+            font-weight: 600;
+            color: var(--navy);
+        }
+
+        .neighborhood-item p {
+            font-size: 0.85rem;
+            color: var(--dark-gray);
+        }
+
+        /* ===== CONTACT PAGE ===== */
+        .contact-hero {
+            padding: 120px 0 60px;
+            position: relative;
+            background: var(--light-gray);
+            overflow: hidden;
+        }
+
+        .contact-hero .hero-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            z-index: 0;
+        }
+
+        .contact-hero .hero-bg::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(26, 42, 58, 0.6);
+            z-index: 1;
+        }
+
+        .contact-hero .container {
+            position: relative;
+            z-index: 2;
+            color: var(--white);
+        }
+
+        .contact-hero .section-title {
+            color: var(--white);
+        }
+
+        .contact-hero .section-subtitle {
+            color: rgba(255, 255, 255, 0.85);
+        }
+
+        .contact-hero .tag {
+            display: inline-block;
+            background: rgba(255, 255, 255, 0.15);
+            color: var(--white);
+            padding: 4px 16px;
+            border-radius: 50px;
+            font-size: 0.7rem;
+            font-weight: 600;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            margin-bottom: 12px;
+            backdrop-filter: blur(4px);
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            padding: 60px 0 80px;
+        }
+
+        .contact-info h2 {
+            font-family: var(--font-heading);
+            font-weight: 700;
+            font-size: 2rem;
+            color: var(--navy);
+            margin-bottom: 20px;
+        }
+
+        .contact-info .ci-item {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            padding: 16px 0;
+            border-bottom: 1px solid var(--gray);
+        }
+
+        .contact-info .ci-item:last-child {
+            border-bottom: none;
+        }
+
+        .contact-info .ci-item i {
+            font-size: 1.4rem;
+            color: var(--sage);
+            width: 32px;
+            text-align: center;
+        }
+
+        .contact-info .ci-item .ci-text {
+            font-weight: 500;
+        }
+        .contact-info .ci-item .ci-text small {
+            display: block;
+            font-weight: 400;
+            color: var(--dark-gray);
+            font-size: 0.85rem;
+        }
+
+        .contact-info .ci-item .ci-text .no-email {
+            display: block;
+            font-weight: 400;
+            color: var(--dark-gray);
+            font-size: 0.85rem;
+        }
+
+        .contact-cta-box {
+            background: var(--white);
+            border-radius: var(--radius);
+            padding: 40px 32px;
+            box-shadow: var(--shadow);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            border: 1px solid rgba(0, 0, 0, 0.03);
+            transition: var(--transition);
+        }
+
+        .contact-cta-box:hover {
+            box-shadow: var(--shadow-hover);
+            transform: translateY(-4px);
+        }
+
+        .contact-cta-box .big-icon {
+            font-size: 3rem;
+            color: var(--sage);
+            opacity: 0.3;
+            margin-bottom: 16px;
+        }
+
+        .contact-cta-box h3 {
+            font-family: var(--font-heading);
+            font-weight: 600;
+            color: var(--navy);
+            font-size: 1.3rem;
+            margin-bottom: 8px;
+        }
+
+        .contact-cta-box p {
+            color: var(--dark-gray);
+            font-size: 0.95rem;
+            max-width: 300px;
+            margin: 0 auto 20px;
+        }
+
+        .contact-cta-box .btn-call {
+            font-size: 1.1rem;
+            padding: 16px 40px;
+        }
+
+        .map-section {
+            padding: 0 0 80px;
+        }
+
+        .map-container {
+            border-radius: var(--radius);
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            height: 380px;
+            background: var(--gray);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, #e8ece8 0%, #d5ddd5 100%);
+            position: relative;
+        }
+
+        .map-container .map-placeholder {
+            text-align: center;
+            color: var(--dark-gray);
+        }
+
+        .map-container .map-placeholder i {
+            font-size: 3rem;
+            color: var(--sage);
+            opacity: 0.3;
+            display: block;
+            margin-bottom: 12px;
+        }
+
+        /* ===== FOOTER ===== */
+        footer {
+            background: var(--navy);
+            color: rgba(255, 255, 255, 0.8);
+            padding: 60px 0 30px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1.5fr;
+            gap: 40px;
+            padding-bottom: 40px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        .footer-brand h3 {
+            font-family: var(--font-heading);
+            font-weight: 800;
+            font-size: 1.6rem;
+            color: var(--white);
+            margin-bottom: 12px;
+        }
+
+        .footer-brand h3 span {
+            color: var(--sage-light);
+        }
+
+        .footer-brand p {
+            font-size: 0.9rem;
+            line-height: 1.8;
+            max-width: 300px;
+        }
+
+        .footer-col h4 {
+            font-family: var(--font-heading);
+            font-weight: 600;
+            color: var(--white);
+            margin-bottom: 16px;
+            font-size: 1rem;
+        }
+
+        .footer-col a {
+            display: block;
+            font-size: 0.9rem;
+            padding: 5px 0;
+            transition: var(--transition);
+        }
+
+        .footer-col a:hover {
+            color: var(--sage-light);
+            padding-left: 6px;
+        }
+
+        .footer-col .btn-call-footer {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: #25D366;
+            color: var(--white);
+            padding: 12px 24px;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            transition: var(--transition);
+            border: none;
+            cursor: pointer;
+            font-family: var(--font-body);
+            margin-top: 8px;
+        }
+
+        .footer-col .btn-call-footer:hover {
+            background: #1ebe5c;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(37, 211, 102, 0.35);
+        }
+
+        .footer-bottom {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-top: 30px;
+            font-size: 0.85rem;
+            color: rgba(255, 255, 255, 0.4);
+        }
+
+        .footer-socials {
+            display: flex;
+            gap: 16px;
+        }
+
+        .footer-socials a {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.06);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: var(--transition);
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        .footer-socials a:hover {
+            background: var(--sage);
+            color: var(--white);
+            transform: translateY(-3px);
+        }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 1024px) {
+            .intro-grid,
+            .about-grid,
+            .contact-grid,
+            .unit-grid {
+                grid-template-columns: 1fr;
+            }
+            .footer-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+            .hero {
+                min-height: auto;
+                padding: 40px 0;
+            }
+            .hero-content {
+                padding: 40px 0 0;
+            }
+            .hero-content h1 {
+                font-size: 2.8rem;
+            }
+            .hero-content .subheadline {
+                font-size: 1rem;
+            }
+            .nav-links .btn-call-nav {
+                padding: 8px 16px;
+                font-size: 0.75rem;
+            }
+            .nav-links .btn-call-nav span {
+                display: none;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 0 20px;
+            }
+            .nav-links {
+                position: fixed;
+                top: 0;
+                right: -100%;
+                width: 75%;
+                max-width: 340px;
+                height: 100vh;
+                background: var(--white);
+                flex-direction: column;
+                padding: 80px 30px 40px;
+                box-shadow: -10px 0 40px rgba(0, 0, 0, 0.06);
+                transition: var(--transition);
+                gap: 20px;
+                align-items: flex-start;
+                overflow-y: auto;
+            }
+            .nav-links.open {
+                right: 0;
+            }
+            .nav-links a {
+                font-size: 1.1rem;
+            }
+            .nav-links .btn-book {
+                margin-top: 10px;
+            }
+            .nav-links .btn-call-nav {
+                padding: 10px 20px;
+                font-size: 0.9rem;
+            }
+            .nav-links .btn-call-nav span {
+                display: inline;
+            }
+            .hamburger {
+                display: flex;
+            }
+            .hamburger.active span:nth-child(1) {
+                transform: rotate(45deg) translate(5px, 5px);
+            }
+            .hamburger.active span:nth-child(2) {
+                opacity: 0;
+            }
+            .hamburger.active span:nth-child(3) {
+                transform: rotate(-45deg) translate(5px, -5px);
+            }
+            .footer-grid {
+                grid-template-columns: 1fr;
+            }
+            .footer-bottom {
+                flex-direction: column;
+                gap: 16px;
+                text-align: center;
+            }
+            .about-text .values {
+                grid-template-columns: 1fr;
+            }
+            .contact-grid {
+                padding: 30px 0 40px;
+                grid-template-columns: 1fr;
+            }
+            .gallery-grid {
+                grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+            }
+            .featured-grid {
+                grid-template-columns: 1fr;
+            }
+            .amenities-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .hero-content h1 {
+                font-size: 2.4rem;
+            }
+            .hero-content .subheadline {
+                font-size: 0.95rem;
+            }
+            .section-title {
+                font-size: 1.8rem;
+            }
+            .cta-section h2 {
+                font-size: 1.8rem;
+            }
+            .hero-cta {
+                flex-direction: column;
+            }
+            .hero-cta .btn-primary,
+            .hero-cta .btn-secondary,
+            .hero-cta .btn-call {
+                width: 100%;
+                text-align: center;
+                justify-content: center;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .amenities-grid {
+                grid-template-columns: 1fr 1fr;
+                gap: 14px;
+            }
+            .amenity-item {
+                padding: 16px 10px;
+            }
+            .amenity-item .icon {
+                font-size: 1.8rem;
+            }
+            .gallery-grid {
+                grid-template-columns: 1fr 1fr;
+                gap: 12px;
+            }
+            .hero-content h1 {
+                font-size: 2rem;
+            }
+            .hero-content .subheadline {
+                font-size: 0.9rem;
+            }
+            .gallery-item {
+                aspect-ratio: 1/1;
+            }
+            .contact-grid {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+            .contact-cta-box {
+                padding: 28px 20px;
+            }
+            .contact-cta-box .btn-call {
+                font-size: 0.95rem;
+                padding: 14px 28px;
+            }
+            .nav-links .btn-call-nav span {
+                display: none;
+            }
+            .nav-links .btn-call-nav {
+                padding: 10px 14px;
+            }
+        }
+
+        /* ===== MOBILE OVERLAY ===== */
+        .nav-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.3);
+            z-index: 998;
+        }
+        .nav-overlay.active {
+            display: block;
+        }
+
+        /* scroll reveal helper */
+        .reveal {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* ===== 3D WAVE BACKGROUND ===== */
+        /* Fixed container sits behind all page content (z-index: 0).
+           Hero sections have their own background images and overlays
+           which completely hide the wave effect behind them. */
+        #wave-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            pointer-events: none;
+            overflow: hidden;
+        }
+
+        #wave-container canvas {
+            display: block;
+            width: 100% !important;
+            height: 100% !important;
+            pointer-events: none;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ===== 3D WAVE BACKGROUND ===== -->
+    <div id="wave-container"></div>
+
+    <!-- ===== NAV OVERLAY ===== -->
+    <div class="nav-overlay" id="navOverlay"></div>
+
+    <!-- ===== HEADER ===== -->
+    <header id="header">
+        <div class="container header-inner">
+            <a href="#" class="logo" data-page="home">Apartment<span>.</span></a>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="#" data-page="home" class="active">Home</a></li>
+                <li><a href="#" data-page="gallery">Gallery</a></li>
+                <li><a href="#" data-page="apartments">Apartments</a></li>
+                <li><a href="#" data-page="about">About</a></li>
+                <li><a href="#" data-page="contact">Contact</a></li>
+                <li>
+                    <a href="tel:+251913682879" class="btn-call-nav">
+                        <i class="fas fa-phone"></i>
+                        <span>Call Now</span>
+                    </a>
+                </li>
+                <li><button class="btn-book" data-page="contact">Book a Tour</button></li>
+            </ul>
+            <div class="hamburger" id="hamburger">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+    </header>
+
+    <!-- ============================================================ -->
+    <!-- ===== HOME PAGE ===== -->
+    <!-- ============================================================ -->
+    <div class="page active" id="page-home">
+
+        <!-- Hero (3D wave hidden behind hero-bg) -->
+        <section class="hero">
+            <div class="hero-bg" style="background-image: url('https://i.ibb.co/FLrhnG3P/5970065779543707224.jpg');"></div>
+            <div class="container" style="display:flex; flex-wrap:wrap; align-items:center; gap:40px; width:100%; position:relative; z-index:2;">
+                <div class="hero-content">
+                    <span class="tag"><i class="fas fa-home" style="margin-right:8px;"></i> Premium Living</span>
+                    <h1>Find Your <span>Perfect Home</span></h1>
+                    <p class="subheadline">Luxury living designed for your comfort, style, and everyday happiness.</p>
+                    <div class="hero-cta">
+                        <a href="#" class="btn-primary" data-page="apartments">Explore Apartments</a>
+                        <a href="tel:+251913682879" class="btn-call"><i class="fas fa-phone"></i> Call Now</a>
+                        <a href="#" class="btn-secondary" data-page="contact">Book a Tour</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Brief Intro (3D wave visible behind) -->
+        <section class="intro-section">
+            <div class="container">
+                <div class="intro-grid">
+                    <div class="intro-text reveal">
+                        <span class="tag" style="background:rgba(122,143,122,0.12); color:var(--sage); padding:4px 16px; border-radius:50px; font-size:0.7rem; font-weight:600; letter-spacing:1px; text-transform:uppercase; display:inline-block; margin-bottom:12px;">Welcome Home</span>
+                        <h2>Designed for the way you <span style="color:var(--sage);">live</span></h2>
+                        <p>At Apartment, we've curated a living experience that blends modern design with everyday comfort. From sun-drenched interiors to thoughtfully planned communal spaces, every detail is crafted to elevate your lifestyle.</p>
+                        <p>Whether you're a young professional, a growing family, or a digital nomad, our spaces adapt to you — not the other way around.</p>
+                    </div>
+                    <div class="intro-image reveal">
+                        <img src="https://i.ibb.co/V89gdkn/5970065779543707231.jpg" alt="Designed for the way you live" loading="lazy" />
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Quick Amenities Banner -->
+        <section class="amenities-banner">
+            <div class="container">
+                <div class="amenities-grid">
+                    <div class="amenity-item reveal">
+                        <span class="icon"><i class="fas fa-wifi"></i></span>
+                        <h4>High-Speed Wi-Fi</h4>
+                        <p>Stay connected</p>
+                    </div>
+                    <div class="amenity-item reveal">
+                        <span class="icon"><i class="fas fa-swimmer"></i></span>
+                        <h4>Swimming Pool</h4>
+                        <p>Relax & refresh</p>
+                    </div>
+                    <div class="amenity-item reveal">
+                        <span class="icon"><i class="fas fa-tree"></i></span>
+                        <h4>Rooftop Terrace</h4>
+                        <p>Skyline views</p>
+                    </div>
+                    <div class="amenity-item reveal">
+                        <span class="icon"><i class="fas fa-car"></i></span>
+                        <h4>Secure Parking</h4>
+                        <p>Peace of mind</p>
+                    </div>
+                    <div class="amenity-item reveal">
+                        <span class="icon"><i class="fas fa-dumbbell"></i></span>
+                        <h4>Fitness Center</h4>
+                        <p>Stay active</p>
+                    </div>
+                    <div class="amenity-item reveal">
+                        <span class="icon"><i class="fas fa-leaf"></i></span>
+                        <h4>Garden</h4>
+                        <p>Nature at your door</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Featured Spaces -->
+        <section class="featured-section">
+            <div class="container">
+                <div class="text-center reveal">
+                    <span class="tag" style="background:rgba(122,143,122,0.12); color:var(--sage); padding:4px 16px; border-radius:50px; font-size:0.7rem; font-weight:600; letter-spacing:1px; text-transform:uppercase; display:inline-block; margin-bottom:8px;">Featured</span>
+                    <h2 class="section-title">Spaces that <span class="highlight">inspire</span></h2>
+                    <p class="section-subtitle mx-auto">Take a peek inside our thoughtfully designed living spaces.</p>
+                </div>
+                <div class="featured-grid">
+                    <div class="featured-card reveal">
+                        <div class="card-img"><img src="https://i.ibb.co/N6CnSjt4/5970065779543707224.jpg" alt="Living Room" loading="lazy" /></div>
+                        <div class="card-body">
+                            <h3>Living Room</h3>
+                            <p>Open, airy, and bathed in natural light. A space designed for relaxation and connection.</p>
+                            <a href="#" class="link-arrow" data-page="apartments">View details <i class="fas fa-arrow-right"></i></a>
+                        </div>
+                    </div>
+                    <div class="featured-card reveal">
+                        <div class="card-img"><img src="https://i.ibb.co/zLQKvGk/5970065779543707223.jpg" alt="Bedroom" loading="lazy" /></div>
+                        <div class="card-body">
+                            <h3>Bedroom</h3>
+                            <p>Peaceful retreats with premium finishes, ample storage, and serene views.</p>
+                            <a href="#" class="link-arrow" data-page="apartments">View details <i class="fas fa-arrow-right"></i></a>
+                        </div>
+                    </div>
+                    <div class="featured-card reveal">
+                        <div class="card-img"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQZvufZ74NIgF6j7ro9QINKTha1rogcP0yRNs-EEJAhMw&s=10" alt="Kitchen" loading="lazy" /></div>
+                        <div class="card-body">
+                            <h3>Kitchen</h3>
+                            <p>Modern appliances, sleek cabinetry, and thoughtful layouts for the home chef.</p>
+                            <a href="#" class="link-arrow" data-page="apartments">View details <i class="fas fa-arrow-right"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CTA Banner -->
+        <section class="cta-section">
+            <div class="container">
+                <h2>Ready to find your <span style="color:var(--sage-light);">new home</span>?</h2>
+                <p>Schedule a tour or call us now to get started.</p>
+                <div style="display:flex; gap:16px; flex-wrap:wrap; justify-content:center;">
+                    <a href="#" class="btn-primary" data-page="contact">Book a Tour</a>
+                    <a href="tel:+251913682879" class="btn-call"><i class="fas fa-phone"></i> Call Now</a>
+                </div>
+            </div>
+        </section>
+
+    </div>
+
+    <!-- ============================================================ -->
+    <!-- ===== GALLERY PAGE ===== -->
+    <!-- ============================================================ -->
+    <div class="page" id="page-gallery">
+
+        <section class="gallery-hero">
+            <div class="hero-bg" style="background-image: url('https://i.ibb.co/FLrhnG3P/5970065779543707224.jpg');"></div>
+            <div class="container">
+                <span class="tag"><i class="fas fa-images" style="margin-right:6px;"></i> Visuals</span>
+                <h1 class="section-title">A Closer <span style="color:var(--sage-light);">Look</span></h1>
+                <p class="section-subtitle">Explore our spaces through curated imagery that captures the essence of modern living.</p>
+                <a href="tel:+251913682879" class="btn-call" style="margin-top:12px;"><i class="fas fa-phone"></i> Call Now</a>
+            </div>
+        </section>
+
+        <div class="container">
+            <div class="gallery-filters reveal">
+                <button class="active" data-filter="all">All</button>
+                <button data-filter="interiors">Interiors</button>
+                <button data-filter="exteriors">Exteriors</button>
+            </div>
+
+            <div class="gallery-grid" id="galleryGrid">
+                <!-- Items will be rendered by JS -->
+            </div>
+        </div>
+
+    </div>
+
+    <!-- ============================================================ -->
+    <!-- ===== APARTMENTS PAGE ===== -->
+    <!-- ============================================================ -->
+    <div class="page" id="page-apartments">
+
+        <section class="apartments-hero">
+            <div class="hero-bg" style="background-image: url('https://i.ibb.co/FLrhnG3P/5970065779543707224.jpg');"></div>
+            <div class="container">
+                <span class="tag"><i class="fas fa-building" style="margin-right:6px;"></i> Interiors</span>
+                <h1 class="section-title">Discover Your <span style="color:var(--sage-light);">New Home</span></h1>
+                <p class="section-subtitle">Thoughtfully designed apartments that blend style, comfort, and functionality.</p>
+                <a href="tel:+251913682879" class="btn-call" style="margin-top:12px;"><i class="fas fa-phone"></i> Call Now</a>
+            </div>
+        </section>
+
+        <!-- Unit Overview -->
+        <section class="unit-overview">
+            <div class="container">
+                <div class="text-center reveal">
+                    <h2 class="section-title">Core <span class="highlight">Layout</span></h2>
+                    <p class="section-subtitle mx-auto">Every apartment is crafted to maximize space, light, and livability.</p>
+                </div>
+                <div class="unit-grid">
+                    <div class="unit-detail reveal">
+                        <h4><i class="fas fa-couch" style="color:var(--sage); margin-right:12px;"></i> Living Room</h4>
+                        <p>Spacious and open-concept, perfect for entertaining or unwinding. Large windows invite natural light throughout the day.</p>
+                    </div>
+                    <div class="unit-detail reveal">
+                        <h4><i class="fas fa-bed" style="color:var(--sage); margin-right:12px;"></i> Bedroom</h4>
+                        <p>Quiet, comfortable, and designed for rest. Built-in closets and premium flooring create a serene atmosphere.</p>
+                    </div>
+                    <div class="unit-detail reveal">
+                        <h4><i class="fas fa-bath" style="color:var(--sage); margin-right:12px;"></i> Bathroom</h4>
+                        <p>Spa-inspired finishes with modern fixtures, rainfall showers, and elegant tile work.</p>
+                    </div>
+                    <div class="unit-detail reveal">
+                        <h4><i class="fas fa-utensils" style="color:var(--sage); margin-right:12px;"></i> Kitchen</h4>
+                        <p>Fully equipped with energy-efficient appliances, quartz countertops, and stylish cabinetry.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Floor Plans -->
+        <section class="floor-plan">
+            <div class="container">
+                <div class="text-center reveal">
+                    <h2 class="section-title">Floor <span class="highlight">Plans</span></h2>
+                    <p class="section-subtitle mx-auto">Choose the layout that fits your lifestyle.</p>
+                </div>
+                <div class="floor-plan-grid">
+                    <div class="floor-card reveal">
+                        <div class="floor-icon"><i class="fas fa-vector-square"></i></div>
+                        <h4>Studio</h4>
+                        <p>420 sq ft · Open concept</p>
+                    </div>
+                    <div class="floor-card reveal">
+                        <div class="floor-icon"><i class="fas fa-vector-square"></i></div>
+                        <h4>1-Bedroom</h4>
+                        <p>680 sq ft · 1 bath</p>
+                    </div>
+                    <div class="floor-card reveal">
+                        <div class="floor-icon"><i class="fas fa-vector-square"></i></div>
+                        <h4>2-Bedroom</h4>
+                        <p>950 sq ft · 2 baths</p>
+                    </div>
+                    <div class="floor-card reveal">
+                        <div class="floor-icon"><i class="fas fa-vector-square"></i></div>
+                        <h4>Penthouse</h4>
+                        <p>1,450 sq ft · Rooftop access</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- In-Unit Features -->
+        <section class="features-list">
+            <div class="container">
+                <div class="text-center reveal">
+                    <h2 class="section-title">In-Unit <span class="highlight">Features</span></h2>
+                    <p class="section-subtitle mx-auto">Every detail matters. Here's what sets our apartments apart.</p>
+                </div>
+                <div class="features-grid">
+                    <div class="feature-badge reveal"><span class="fi"><i class="fas fa-snowflake"></i></span> <span>Central A/C & Heating</span></div>
+                    <div class="feature-badge reveal"><span class="fi"><i class="fas fa-tint"></i></span> <span>Water Filtration System</span></div>
+                    <div class="feature-badge reveal"><span class="fi"><i class="fas fa-wifi"></i></span> <span>Gigabit Fiber Internet</span></div>
+                    <div class="feature-badge reveal"><span class="fi"><i class="fas fa-sun"></i></span> <span>Floor-to-Ceiling Windows</span></div>
+                    <div class="feature-badge reveal"><span class="fi"><i class="fas fa-door-open"></i></span> <span>Smart Locks</span></div>
+                    <div class="feature-badge reveal"><span class="fi"><i class="fas fa-tshirt"></i></span> <span>In-Unit Washer/Dryer</span></div>
+                    <div class="feature-badge reveal"><span class="fi"><i class="fas fa-puzzle-piece"></i></span> <span>Walk-in Closets</span></div>
+                    <div class="feature-badge reveal"><span class="fi"><i class="fas fa-shield-alt"></i></span> <span>24/7 Security</span></div>
+                </div>
+            </div>
+        </section>
+
+        <section class="cta-section" style="background:var(--sage);">
+            <div class="container">
+                <h2>Find your perfect <span style="color:var(--white);">layout</span></h2>
+                <p style="color:rgba(255,255,255,0.9);">Check availability or call us for more details.</p>
+                <div style="display:flex; gap:16px; flex-wrap:wrap; justify-content:center;">
+                    <a href="#" class="btn-primary" data-page="contact" style="background:var(--white); color:var(--sage); box-shadow:0 8px 30px rgba(0,0,0,0.15);">Check Availability</a>
+                    <a href="tel:+251913682879" class="btn-call"><i class="fas fa-phone"></i> Call Now</a>
+                </div>
+            </div>
+        </section>
+
+    </div>
+
+    <!-- ============================================================ -->
+    <!-- ===== ABOUT PAGE ===== -->
+    <!-- ============================================================ -->
+    <div class="page" id="page-about">
+
+        <section class="about-hero">
+            <div class="hero-bg" style="background-image: url('https://i.ibb.co/FLrhnG3P/5970065779543707224.jpg');"></div>
+            <div class="container">
+                <span class="tag"><i class="fas fa-heart" style="margin-right:6px;"></i> Our Story</span>
+                <h1 class="section-title">Who We <span style="color:var(--sage-light);">Are</span></h1>
+                <p class="section-subtitle">Built on a vision of community, design, and modern comfort.</p>
+                <a href="tel:+251913682879" class="btn-call" style="margin-top:12px;"><i class="fas fa-phone"></i> Call Now</a>
+            </div>
+        </section>
+
+        <div class="container">
+            <div class="about-grid">
+                <div class="about-image reveal">
+                    <img src="https://i.ibb.co/mrxv03cN/5970065779543707231-1.jpg" alt="About Apartment" loading="lazy" />
+                </div>
+                <div class="about-text reveal">
+                    <h2>Designed for <span style="color:var(--sage);">connection</span></h2>
+                    <p>Apartment was born from a simple idea: that where you live should inspire how you live. We set out to create a space that feels like home the moment you walk through the door.</p>
+                    <p>Every detail — from the floor plan to the finishes — is chosen with intention. We believe in building communities, not just buildings.</p>
+                    <div class="values">
+                        <div class="val"><i class="fas fa-check-circle"></i> Community-first</div>
+                        <div class="val"><i class="fas fa-check-circle"></i> Modern design</div>
+                        <div class="val"><i class="fas fa-check-circle"></i> Sustainable living</div>
+                        <div class="val"><i class="fas fa-check-circle"></i> Uncompromising quality</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Neighborhood -->
+        <section class="neighborhood">
+            <div class="container">
+                <div class="text-center reveal">
+                    <h2 class="section-title">The <span class="highlight">Neighborhood</span></h2>
+                    <p class="section-subtitle mx-auto">Located in one of Addis Ababa's most vibrant and connected areas.</p>
+                </div>
+                <div class="neighborhood-grid">
+                    <div class="neighborhood-item reveal">
+                        <div class="ni-icon"><i class="fas fa-tree"></i></div>
+                        <h4>Parks</h4>
+                        <p>Green spaces just minutes away</p>
+                    </div>
+                    <div class="neighborhood-item reveal">
+                        <div class="ni-icon"><i class="fas fa-bus"></i></div>
+                        <h4>Transit</h4>
+                        <p>Easy access to public transport</p>
+                    </div>
+                    <div class="neighborhood-item reveal">
+                        <div class="ni-icon"><i class="fas fa-shopping-bag"></i></div>
+                        <h4>Shopping</h4>
+                        <p>Retail, dining, and more nearby</p>
+                    </div>
+                    <div class="neighborhood-item reveal">
+                        <div class="ni-icon"><i class="fas fa-graduation-cap"></i></div>
+                        <h4>Schools</h4>
+                        <p>Top-rated schools in the area</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </div>
+
+    <!-- ============================================================ -->
+    <!-- ===== CONTACT PAGE ===== -->
+    <!-- ============================================================ -->
+    <div class="page" id="page-contact">
+
+        <section class="contact-hero">
+            <div class="hero-bg" style="background-image: url('https://i.ibb.co/FLrhnG3P/5970065779543707224.jpg');"></div>
+            <div class="container">
+                <span class="tag"><i class="fas fa-phone-alt" style="margin-right:6px;"></i> Get in Touch</span>
+                <h1 class="section-title">Let's <span style="color:var(--sage-light);">Connect</span></h1>
+                <p class="section-subtitle">We're here to answer your questions and help you find your new home.</p>
+                <a href="tel:+251913682879" class="btn-call" style="margin-top:12px;"><i class="fas fa-phone"></i> Call Now</a>
+            </div>
+        </section>
+
+        <div class="container">
+            <div class="contact-grid">
+                <div class="contact-info reveal">
+                    <h2>Reach out <span style="color:var(--sage);">anytime</span></h2>
+                    <p style="color:var(--dark-gray); margin-bottom:24px;">Whether you're ready to book a tour or just have a question, we'd love to hear from you.</p>
+                    <div class="ci-item">
+                        <i class="fas fa-phone-alt"></i>
+                        <div class="ci-text">+251 913 682 879 <small>Call or WhatsApp</small></div>
+                    </div>
+                    <div class="ci-item">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <div class="ci-text">Ethio China St, Addis Ababa <small>Visit us in person</small></div>
+                    </div>
+                    <div class="ci-item" style="border-bottom:none; padding-bottom:0;">
+                        <i class="fas fa-clock"></i>
+                        <div class="ci-text">Mon–Sat: 8:00 AM – 6:00 PM <small>Sunday: Closed</small></div>
+                    </div>
+                </div>
+
+                <!-- Contact CTA Box with Call Now -->
+                <div class="contact-cta-box reveal">
+                    <div class="big-icon"><i class="fas fa-phone-alt"></i></div>
+                    <h3>Call Us Now</h3>
+                    <p>Speak directly with our leasing team. We're ready to help you find your perfect home.</p>
+                    <a href="tel:+251913682879" class="btn-call"><i class="fas fa-phone"></i> +251 913 682 879</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Map -->
+        <section class="map-section">
+            <div class="container">
+                <div class="map-container reveal">
+                    <div class="map-placeholder">
+                        <i class="fas fa-map-marked-alt"></i>
+                        <p style="font-weight:500; color:var(--charcoal);">Ethio China St, Addis Ababa</p>
+                        <p style="font-size:0.85rem; color:var(--dark-gray);">?? Exact location — we're easy to find</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </div>
+
+    <!-- ============================================================ -->
+    <!-- ===== FOOTER ===== -->
+    <!-- ============================================================ -->
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <h3>Apartment<span>.</span></h3>
+                    <p>Modern living elevated. Designed for those who seek comfort, style, and connection in the heart of Addis Ababa.</p>
+                </div>
+                <div class="footer-col">
+                    <h4>Quick Links</h4>
+                    <a href="#" data-page="home">Home</a>
+                    <a href="#" data-page="gallery">Gallery</a>
+                    <a href="#" data-page="apartments">Apartments</a>
+                    <a href="#" data-page="about">About</a>
+                    <a href="#" data-page="contact">Contact</a>
+                </div>
+                <div class="footer-col">
+                    <h4>Contact</h4>
+                    <a href="tel:+251913682879"><i class="fas fa-phone-alt" style="width:20px;"></i> +251 913 682 879</a>
+                    <a href="#"><i class="fas fa-map-marker-alt" style="width:20px;"></i> Ethio China St, Addis Ababa</a>
+                    <a href="tel:+251913682879" class="btn-call-footer"><i class="fas fa-phone"></i> Call Now</a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <span>&copy; 2026 Apartment. All rights reserved.</span>
+                <div class="footer-socials">
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-youtube"></i></a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ============================================================ -->
+    <!-- ===== THREE.JS ===== -->
+    <!-- ============================================================ -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js">
+    </script>
+
+    <script>
+        // ============================================================
+        // 3D WAVE BACKGROUND (Glassmorphism style)
+        // This runs behind all content. Hero sections use their own
+        // background images/overlays to hide the wave effect.
+        // ============================================================
+        (function initWaveBackground() {
+            const container = document.getElementById('wave-container');
+            if (!container) return;
+
+            // --- Scene Setup ---
+            const scene = new THREE.Scene();
+            scene.background = null; // transparent
+
+            const camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 0.1, 1000);
+            camera.position.set(0, 0, 8);
+
+            const renderer = new THREE.WebGLRenderer({
+                antialias: true,
+                alpha: true
+            });
+            renderer.setSize(window.innerWidth, window.innerHeight);
+            renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+            renderer.shadowMap.enabled = true;
+            renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+            container.appendChild(renderer.domElement);
+
+            // --- Lighting ---
+            const ambientLight = new THREE.AmbientLight(0xffffff, 0.4);
+            scene.add(ambientLight);
+
+            const dirLight = new THREE.DirectionalLight(0xffffff, 0.8);
+            dirLight.position.set(2, 3, 4);
+            scene.add(dirLight);
+
+            const backLight = new THREE.DirectionalLight(0xa8bba8, 0.3);
+            backLight.position.set(-2, -1, -4);
+            scene.add(backLight);
+
+            // --- Create Wave Layers ---
+            const layers = [];
+            const colors = [
+                { r: 1.0, g: 1.0, b: 1.0 }, // white
+                { r: 0.85, g: 0.92, b: 0.85 }, // sage light
+                { r: 0.6, g: 0.7, b: 0.6 }, // sage
+                { r: 0.1, g: 0.16, b: 0.23 }, // navy
+            ];
+            const opacities = [0.06, 0.05, 0.04, 0.03];
+            const amplitudes = [0.15, 0.25, 0.35, 0.12];
+            const frequencies = [1.2, 1.8, 0.9, 2.2];
+            const speeds = [0.4, 0.6, 0.3, 0.7];
+
+            const segments = 64;
+
+            for (let i = 0; i < 4; i++) {
+                const geometry = new THREE.PlaneGeometry(12, 12, segments, segments);
+
+                const material = new THREE.ShaderMaterial({
+                    uniforms: {
+                        uTime: { value: 0 },
+                        uAmplitude: { value: amplitudes[i] },
+                        uFrequency: { value: frequencies[i] },
+                        uSpeed: { value: speeds[i] },
+                        uColor: { value: new THREE.Color(colors[i].r, colors[i].g, colors[i].b) },
+                        uOpacity: { value: opacities[i] },
+                        uCameraPos: { value: camera.position }
+                    },
+                    vertexShader: `
+                                uniform float uTime;
+                                uniform float uAmplitude;
+                                uniform float uFrequency;
+                                uniform float uSpeed;
+                                varying vec3 vPosition;
+                                varying vec3 vNormal;
+                                varying float vElevation;
+
+                                void main() {
+                                    vec3 pos = position;
+                                    float wave1 = sin(pos.x * uFrequency + uTime * uSpeed) * uAmplitude;
+                                    float wave2 = cos(pos.y * uFrequency * 0.8 + uTime * 0.7 * uSpeed) * uAmplitude * 0.6;
+                                    float wave3 = sin((pos.x + pos.y) * uFrequency * 0.5 + uTime * 0.5 * uSpeed) * uAmplitude * 0.4;
+                                    pos.z += wave1 + wave2 + wave3;
+                                    vElevation = pos.z;
+                                    vPosition = pos;
+
+                                    // Compute normal approximation
+                                    float eps = 0.05;
+                                    float dx = sin((pos.x + eps) * uFrequency + uTime * uSpeed) * uAmplitude
+                                             + cos(pos.y * uFrequency * 0.8 + uTime * 0.7 * uSpeed) * uAmplitude * 0.6
+                                             + sin(((pos.x + eps) + pos.y) * uFrequency * 0.5 + uTime * 0.5 * uSpeed) * uAmplitude * 0.4;
+                                    float dy = sin(pos.x * uFrequency + uTime * uSpeed) * uAmplitude
+                                             + cos((pos.y + eps) * uFrequency * 0.8 + uTime * 0.7 * uSpeed) * uAmplitude * 0.6
+                                             + sin((pos.x + (pos.y + eps)) * uFrequency * 0.5 + uTime * 0.5 * uSpeed) * uAmplitude * 0.4;
+                                    vec3 tangent1 = normalize(vec3(eps, 0.0, dx - pos.z));
+                                    vec3 tangent2 = normalize(vec3(0.0, eps, dy - pos.z));
+                                    vNormal = normalize(cross(tangent1, tangent2));
+
+                                    gl_Position = projectionMatrix * modelViewMatrix * vec4(pos, 1.0);
+                                }
+                            `,
+                    fragmentShader: `
+                                uniform vec3 uColor;
+                                uniform float uOpacity;
+                                uniform vec3 uCameraPos;
+                                varying vec3 vPosition;
+                                varying vec3 vNormal;
+                                varying float vElevation;
+
+                                void main() {
+                                    vec3 viewDir = normalize(uCameraPos - vPosition);
+                                    float fresnel = 1.0 - max(dot(viewDir, vNormal), 0.0);
+                                    fresnel = pow(fresnel, 2.0) * 0.9;
+
+                                    float rim = fresnel * 0.5;
+                                    vec3 color = uColor + vec3(0.6, 0.7, 0.8) * rim * 0.4;
+
+                                    float alpha = uOpacity + fresnel * 0.12;
+                                    alpha = clamp(alpha, 0.0, 0.25);
+
+                                    gl_FragColor = vec4(color, alpha);
+                                }
+                            `,
+                    transparent: true,
+                    side: THREE.DoubleSide,
+                    blending: THREE.NormalBlending,
+                    depthWrite: false,
+                    wireframe: false,
+                });
+
+                const mesh = new THREE.Mesh(geometry, material);
+                mesh.position.z = -i * 0.3;
+                mesh.rotation.x = -0.1;
+                mesh.rotation.y = i * 0.15;
+                scene.add(mesh);
+                layers.push(mesh);
+            }
+
+            // --- Animation Loop ---
+            let clock = new THREE.Clock();
+
+            function animate() {
+                const delta = clock.getDelta();
+                const elapsedTime = performance.now() / 1000;
+
+                layers.forEach((mesh, index) => {
+                    if (mesh.material.uniforms) {
+                        mesh.material.uniforms.uTime.value = elapsedTime * 0.6;
+                    }
+                    // Subtle rotation for dynamic feel
+                    mesh.rotation.z += 0.00015;
+                    mesh.rotation.x = -0.1 + Math.sin(elapsedTime * 0.05 + index) * 0.03;
+                });
+
+                renderer.render(scene, camera);
+                requestAnimationFrame(animate);
+            }
+
+            animate();
+
+            // --- Resize Handler ---
+            function onResize() {
+                const width = window.innerWidth;
+                const height = window.innerHeight;
+                camera.aspect = width / height;
+                camera.updateProjectionMatrix();
+                renderer.setSize(width, height);
+            }
+
+            window.addEventListener('resize', onResize);
+
+            // --- Cleanup ---
+            window._waveCleanup = () => {
+                renderer.dispose();
+                if (container) {
+                    while (container.firstChild) container.removeChild(container.firstChild);
+                }
+            };
+        })();
+
+        // ============================================================
+        // NAVIGATION
+        // ============================================================
+        const navLinks = document.querySelectorAll('[data-page]');
+        const pages = {
+            home: document.getElementById('page-home'),
+            gallery: document.getElementById('page-gallery'),
+            apartments: document.getElementById('page-apartments'),
+            about: document.getElementById('page-about'),
+            contact: document.getElementById('page-contact')
+        };
+        const header = document.getElementById('header');
+        const hamburger = document.getElementById('hamburger');
+        const navOverlay = document.getElementById('navOverlay');
+        const navList = document.getElementById('navLinks');
+
+        function navigate(pageId) {
+            Object.keys(pages).forEach(key => {
+                pages[key].classList.remove('active');
+            });
+            if (pages[pageId]) {
+                pages[pageId].classList.add('active');
+                pages[pageId].scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
+            document.querySelectorAll('.nav-links a').forEach(a => {
+                a.classList.toggle('active', a.dataset.page === pageId);
+            });
+            closeMobile();
+            if (pageId !== 'home') {
+                history.pushState(null, '', '#' + pageId);
+            } else {
+                history.pushState(null, '', '#');
+            }
+            setTimeout(() => {
+                document.querySelectorAll('.reveal').forEach(el => {
+                    if (isInViewport(el)) el.classList.add('visible');
+                });
+            }, 200);
+        }
+
+        function closeMobile() {
+            navList.classList.remove('open');
+            hamburger.classList.remove('active');
+            navOverlay.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+
+        function toggleMobile() {
+            navList.classList.toggle('open');
+            hamburger.classList.toggle('active');
+            navOverlay.classList.toggle('active');
+            document.body.style.overflow = navList.classList.contains('open') ? 'hidden' : '';
+        }
+
+        navLinks.forEach(el => {
+            el.addEventListener('click', (e) => {
+                e.preventDefault();
+                const page = el.dataset.page;
+                if (page) navigate(page);
+            });
+        });
+
+        hamburger.addEventListener('click', toggleMobile);
+        navOverlay.addEventListener('click', closeMobile);
+
+        window.addEventListener('hashchange', () => {
+            const hash = window.location.hash.replace('#', '');
+            if (hash && pages[hash]) navigate(hash);
+        });
+
+        window.addEventListener('scroll', () => {
+            header.classList.toggle('scrolled', window.scrollY > 40);
+        });
+
+        // ============================================================
+        // REVEAL ON SCROLL
+        // ============================================================
+        function isInViewport(el) {
+            const rect = el.getBoundingClientRect();
+            const winHeight = window.innerHeight || document.documentElement.clientHeight;
+            return rect.top <= winHeight - 80 && rect.bottom >= 0;
+        }
+
+        function handleReveals() {
+            document.querySelectorAll('.reveal').forEach(el => {
+                if (isInViewport(el)) el.classList.add('visible');
+            });
+        }
+
+        window.addEventListener('scroll', handleReveals);
+        window.addEventListener('resize', handleReveals);
+        setTimeout(handleReveals, 300);
+        setTimeout(handleReveals, 1000);
+
+        // ============================================================
+        // GALLERY DATA & FILTER
+        // ============================================================
+        const galleryData = [
+            // Interiors
+            { id: 1, category: 'interiors', label: 'Living Room', img: 'https://i.ibb.co/N6CnSjt4/5970065779543707224.jpg' },
+            { id: 2, category: 'interiors', label: 'Kitchen', img: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQZvufZ74NIgF6j7ro9QINKTha1rogcP0yRNs-EEJAhMw&s=10' },
+            { id: 3, category: 'interiors', label: 'Bedroom', img: 'https://i.ibb.co/zLQKvGk/5970065779543707223.jpg' },
+            { id: 4, category: 'interiors', label: 'Bathroom', img: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTzzpUkyOSXnng-1Ewo_j-FX6ohuUSho99Krh0zo2WNCw&s=10' },
+            // Exteriors
+            { id: 5, category: 'exteriors', label: 'Building Facade', img: 'https://i.ibb.co/V89gdkn/5970065779543707231.jpg' },
+            { id: 6, category: 'exteriors', label: 'Entrance', img: 'https://i.ibb.co/tp1nh62c/5970065779543707232.jpg' },
+        ];
+
+        const galleryGrid = document.getElementById('galleryGrid');
+        let currentFilter = 'all';
+
+        function renderGallery(filter) {
+            const items = filter === 'all' ? galleryData : galleryData.filter(d => d.category === filter);
+            galleryGrid.innerHTML = items.map(item => `
+                        <div class="gallery-item" data-category="${item.category}">
+                            <img src="${item.img}" alt="${item.label}" loading="lazy" />
+                            <span class="gi-label">${item.label}</span>
+                        </div>
+                    `).join('');
+        }
+
+        renderGallery('all');
+
+        document.querySelectorAll('.gallery-filters button').forEach(btn => {
+            btn.addEventListener('click', () => {
+                document.querySelectorAll('.gallery-filters button').forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                currentFilter = btn.dataset.filter;
+                renderGallery(currentFilter);
+            });
+        });
+
+        // ============================================================
+        // INIT
+        // ============================================================
+        const hash = window.location.hash.replace('#', '');
+        if (hash && pages[hash]) {
+            navigate(hash);
+        }
+
+        console.log('?? Apartment — Find Your Perfect Home');
+        console.log('?? Ethio China St, Addis Ababa');
+        console.log('?? +251 913 682 879');
+    </script>
+
+</body>
+</html>
